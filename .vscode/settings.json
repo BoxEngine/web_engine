@@ -1,5 +1,6 @@
 {
 	"typescript.tsdk": "node_modules/typescript/lib",
 	"typescript.enablePromptUseWorkspaceTsdk": true,
-	"i18n-ally.localesPaths": ["public/locales", "src/shared/config/i18n"]
+	"i18n-ally.localesPaths": ["public/locales", "src/shared/config/i18n"],
+	"i18n-ally.sourceLanguage": "ru"
 }
