@@ -1,6 +1,7 @@
+import { CreateStory } from '@/pages/CreateStory'
 import { ForbiddenPage } from '@/pages/ForbiddenPage'
 import { MainPage } from '@/pages/MainPage'
-import { AppRoutes, getRouteForbidden, getRouteMain } from '@/shared/consts/router'
+import { AppRoutes, getRouteCreateStory, getRouteForbidden, getRouteMain } from '@/shared/consts/router'
 import { AppRouteProps } from '@/shared/types/router'
 
 export const routeConfig: Record<AppRoutes, AppRouteProps> = {
@@ -11,5 +12,10 @@ export const routeConfig: Record<AppRoutes, AppRouteProps> = {
 	[AppRoutes.FORBIDDEN]: {
 		element: <ForbiddenPage/>,
 		path: getRouteForbidden()
+	},
+	[AppRoutes.CREATE_STORY]: {
+		element: <CreateStory/>,
+		path: getRouteCreateStory(),
+		// authOnly: true
 	}
 }
