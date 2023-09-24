@@ -2,35 +2,34 @@
 @import 'variables/global';
 @import 'themes/normal';
 @import 'themes/dark';
-@import 'themes/orange.scss';
 
 .app,
 .app_modal,
-.app_drawer{
-    font: var(--font-m);
-    color: var(--primary-color);
+.app_drawer {
+	font: var(--font-m);
+	color: var(--primary-color);
 }
 
 .app {
-    min-height: 100vh;
-    background: var(--bg-color);
+	min-height: 100vh;
+	background: var(--bg-color);
 }
 
 .content-page {
-    display: flex;
+	display: flex;
 }
 
 *::-webkit-scrollbar {
-    width: 12px;
-    height: 8px;
+	width: 12px;
+	height: 8px;
 }
 
 *::-webkit-scrollbar-track {
-    background-color: var(--card-bg);
+	background-color: var(--card-bg);
 }
 
 *::-webkit-scrollbar-thumb {
-    background-color: var(--inverted-primary-color);
-    border-radius: 20px;
-    border: 3px solid var(--primary-color);
+	background-color: var(--inverted-primary-color);
+	border-radius: 20px;
+	border: 3px solid var(--primary-color);
 }

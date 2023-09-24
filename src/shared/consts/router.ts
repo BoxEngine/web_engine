@@ -1,6 +1,7 @@
-export enum AppRoutes {}
-// like this
-// MAIN = "main",
+export enum AppRoutes {
+	MAIN = 'main',
+	FORBIDDEN = 'forbidden',
+}
 
-// like this
-// export const getRouteProfile = (id: string) => "/profile/" + id;
+export const getRouteMain = () => '/'
+export const getRouteForbidden = () => '/forbidden'
