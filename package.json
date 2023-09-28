@@ -131,6 +131,7 @@
 		"axios": "^1.4.0",
 		"concurrently": "^8.2.1",
 		"copy-webpack-plugin": "^11.0.0",
+		"elkjs": "^0.8.2",
 		"i18next": "^23.4.4",
 		"i18next-browser-languagedetector": "^7.1.0",
 		"i18next-http-backend": "^2.2.1",
@@ -139,6 +140,20 @@
 		"react-dom": "^18.2.0",
 		"react-i18next": "^13.1.2",
 		"react-redux": "^8.1.2",
-		"react-router-dom": "^6.15.0"
+		"react-router-dom": "^6.15.0",
+		"rete": "^2.0.2",
+		"rete-area-plugin": "^2.0.1",
+		"rete-auto-arrange-plugin": "^2.0.0",
+		"rete-connection-plugin": "^2.0.0",
+		"rete-connection-reroute-plugin": "^2.0.0",
+		"rete-context-menu-plugin": "^2.0.0",
+		"rete-dock-plugin": "^2.0.0",
+		"rete-engine": "^2.0.0",
+		"rete-history-plugin": "^2.0.0",
+		"rete-minimap-plugin": "^2.0.0",
+		"rete-react-plugin": "^2.0.1",
+		"rete-render-utils": "^2.0.1",
+		"styled-components": "^6.0.8",
+		"web-worker": "^1.2.0"
 	}
 }

@@ -1,4 +1,17 @@
-.canvas {
-	max-width: 100vw;
-	max-height: 100vh;
+.rete {
+	width: 100vw;
+	height: 100vh;
+}
+
+.header {
+	position: absolute;
+	top: 0;
+	left: 0;
+	display: flex;
+	z-index: 10000;
+}
+
+.tabs {
+	overflow-x: auto;
+	display: flex;
 }

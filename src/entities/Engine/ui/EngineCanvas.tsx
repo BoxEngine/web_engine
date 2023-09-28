@@ -1,39 +1,58 @@
 import { cn } from '@/shared/lib/classNames'
-import { FC } from 'react'
+import { FC, useState, useEffect } from 'react';
 import classes from './EngineCanvas.module.scss'
-import { Canvas, RenderCallbackProps } from '@/shared/ui/Canvas'
-import { Zoom } from '../model/logic/Canvas/Zoom'
+import { useRete } from 'rete-react-plugin'
+import { createEditor } from './rete/config/editor'
 
 interface Props {
 	className?: string
 }
 
 export const EngineCanvas: FC<Props> = ({ className }) => {
-	const renderCanvas = ({ canvasHTML, ctx }: RenderCallbackProps) => {
-        const zoom = new Zoom(canvasHTML, (scale, {x, y}) => {
-            
-        })
+	const [ref, editor] = useRete(createEditor)
+	const [modules, setModules] = useState<string[]>([]);
 
-		const animate = () => {
-			const timer = requestAnimationFrame(animate)
-
-			return () => {
-				cancelAnimationFrame(timer)
-			}
-		}
-
-		requestAnimationFrame(animate)
-	}
-
+	useEffect(() => {
+    if (editor) {
+      const list = editor.getModules();
+      setModules(list);
+      editor.openModule(list[0]);
+    }
+  }, [editor]);
+	
 	return (
-		<div className={cn(classes.EngineCanvas, {}, [className])}>
+		<>
+			{editor && (
+				<div className={classes.header}>
+					<div className={classes.tabs}>
+						{
+							modules.map(module => <button key={module} onClick={() => editor.openModule(module)}>{module}</button>)
+						}
+					</div>
+					<button
+						onClick={() => {
+							const name = prompt('Module name')
 
-			<Canvas
-				className={classes.canvas}
-				renderCallback={renderCanvas}
-				height={window.innerHeight}
-				width={window.innerWidth}
-			/>
-		</div>
+							if (name) {
+								editor?.newModule(name)
+								setModules(editor.getModules())
+							}
+						}}
+					>
+						New
+					</button>
+					<button onClick={() => editor?.saveModule()}>
+						Save
+					</button>
+					<button onClick={() => editor?.restoreModule()}>
+						Restore
+					</button>
+				</div>
+			)}
+			<div
+				ref={ref}
+				className={cn(classes.EngineCanvas, {}, [classes.rete, className])}
+			></div>
+		</>
 	)
 }

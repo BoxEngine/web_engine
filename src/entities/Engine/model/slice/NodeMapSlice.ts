@@ -12,25 +12,39 @@ export const articlePageSelectors = nodeMapSliceAdapter.getSelectors<StateSchema
 	(state) => state.nodeMapSchema || nodeMapSliceAdapter.getInitialState(),
 )
 
-export const NodeMapSlice = buildSlice({
+const NodeMapSlice = buildSlice({
 	name: 'nodeMapSlice',
 	initialState: nodeMapSliceAdapter.getInitialState<nodeMapSchema>({
 		entities: {},
 		ids: [],
+		currentTool: null,
 	}),
 	reducers: {
-		addNode: (state, payload: PayloadAction<NodeType>) => {
+		setTool: (state, action: PayloadAction<NodeType>) => {
 			//@ts-ignore
-			nodeMapSliceAdapter.addOne(state, payload.payload)
+			state.currentTool = action.payload
+			//@ts-ignore
+			nodeMapSliceAdapter.addOne(state, action.payload)
 		},
 
-		iterationAll: (state) => {
+		clearTool: (state) => {
+			state.currentTool = null
+		},
+
+		iterationAll: (
+			state,
+			action: PayloadAction<{ scale: number; translatePos: { x: number; y: number } }>,
+		) => {
+			const { scale, translatePos } = action.payload
+
 			//@ts-ignore
 			const nodes = nodeMapSliceAdapter.getSelectors().selectAll(state)
 
 			nodes.forEach((node) => {
-				node.mouseUpHandler()
+				node.geometry.drawRelative(scale, translatePos)
 			})
 		},
 	},
 })
+
+export const { useActions: useNodeMapActions, reducer: NodeMapReducer } = NodeMapSlice
