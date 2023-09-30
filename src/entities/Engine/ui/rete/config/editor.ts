@@ -1,4 +1,3 @@
-import { createRoot } from 'react-dom/client'
 import { NodeEditor, GetSchemes, ClassicPreset } from 'rete'
 import { AreaPlugin, AreaExtensions } from 'rete-area-plugin'
 import { ConnectionPlugin, Presets as ConnectionPresets } from 'rete-connection-plugin'
@@ -49,7 +48,7 @@ export async function createEditor(container: HTMLElement) {
 	const editor = new NodeEditor<Schemes>()
 	const area = new AreaPlugin<Schemes, AreaExtra>(container)
 	const connection = new ConnectionPlugin<Schemes, AreaExtra>()
-	const render = new ReactPlugin<Schemes, AreaExtra>({ createRoot })
+	const render = new ReactPlugin<Schemes, AreaExtra>()
 	const arrange = new AutoArrangePlugin<Schemes, AreaExtra>()
 	const dock = new DockPlugin<Schemes>()
 	const minimap = new MinimapPlugin<Schemes>({
@@ -60,7 +59,7 @@ export async function createEditor(container: HTMLElement) {
 	HistoryExtensions.keyboard(history)
 
 	history.addPreset(HistoryPresets.classic.setup())
-	dock.addPreset(DockPresets.classic.setup({ area, size: 150, scale: 0.6 }))
+	dock.addPreset(DockPresets.classic.setup({ area, size: 120, scale: 0.5 }))
 	render.addPreset(Presets.minimap.setup({ size: 200 }))
 	arrange.addPreset(ArrangePresets.classic.setup())
 
@@ -78,6 +77,7 @@ export async function createEditor(container: HTMLElement) {
 			},
 		}),
 	)
+
 	render.addPreset(Presets.contextMenu.setup())
 
 	connection.addPreset(ConnectionPresets.classic.setup())
